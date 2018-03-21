@@ -4,32 +4,8 @@ const fs = require('fs');
 const ld = require('lodash');
 
 const notes = require('./notes.js');
-const yarg = require('yargs');
-const titleOptions = {
-  describe: 'title of body',
-  demand: true,
-  alias: 't'
-};
-const bodyOptions = {
-  describe: 'body content',
-  demand: false,
-  alias: 'b'
-};
-
-const argv = yarg
-  .command('add','adds a node',{
-    title :titleOptions,
-    body :bodyOptions
-  })
-  .command('list','lists all node')
-  .command('read','reads a node',{
-    title :titleOptions,
-  })
-  .command('remove','removes a node',{
-    title :titleOptions,
-  })
-  .help()
-  .argv;
+const yarg = require('yargs')
+const argv = yarg.argv;
 
 var command = argv._[0];
 
@@ -43,8 +19,7 @@ if(command ==='add'){
   }
 }
 if(command ==='list'){
-  var allnotes = notes.getAll();
-  console.log(allnotes);
+  notes.getAll();
 }
 
 if(command ==='read'){
